@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Pages;
 
 use App\Models\PagesFollowers;
+use App\Models\PersonFollowers;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Pages\PagesRepository;
 use App\Repositories\Users\UsersRepository;
@@ -15,8 +16,10 @@ use App\Repositories\Pages\PagesRepositoryInterface;
 use App\Repositories\Users\UsersRepositoryInterface;
 use App\Repositories\Authentication\AuthenticationRepository;
 use App\Repositories\PagesFollowers\PagesFollowersRepository;
+use App\Repositories\PersonFollowers\PersonFollowersRepository;
 use App\Repositories\Authentication\AuthenticationRepositoryInterface;
 use App\Repositories\PagesFollowers\PagesFollowersRepositoryInterface;
+use App\Repositories\PersonFollowers\PersonFollowersRepositoryInterface;
 
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -47,6 +50,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->singleton(PagesFollowersRepositoryInterface::class, function($App) 
         {
             return new PagesFollowersRepository(PagesFollowers::class);
+        });
+
+        $this->app->singleton(PersonFollowersRepositoryInterface::class, function($App) 
+        {
+            return new PersonFollowersRepository(PersonFollowers::class);
         });
 
       

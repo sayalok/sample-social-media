@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Users\UserController;
 use App\Http\Controllers\Api\Pages\PagesController;
 use App\Http\Controllers\Api\Auth\AuthenticationController;
 use App\Http\Controllers\Api\PagesFollowers\PagesFollowersController;
+use App\Http\Controllers\Api\PersonFollowers\PersonFollowersController;
 
 
 
@@ -23,7 +24,8 @@ Route::group(['middleware' => 'auth:api',], function ($router) {
     Route::prefix('pages')->group(function()
     {
         Route::post('/create_page', [PagesController::class, 'create']);
-        Route::post('/follow', [PagesFollowersController::class, 'follow_pages']);
+        Route::post('/follow_page', [PagesFollowersController::class, 'follow_pages']);
+        Route::post('/folow_person', [PersonFollowersController::class, 'follow_person']);
     });
 });
 
