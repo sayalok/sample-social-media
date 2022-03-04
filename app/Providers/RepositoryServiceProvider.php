@@ -1,17 +1,20 @@
 <?php
 
 namespace App\Providers;
-use App\Models\User;
+use App\Models\Post;
 
 
 //Authentication
-use App\Models\Pages;
+use App\Models\User;
 
+use App\Models\Pages;
 use App\Models\PagesFollowers;
 use App\Models\PersonFollowers;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Post\PostRepository;
 use App\Repositories\Pages\PagesRepository;
 use App\Repositories\Users\UsersRepository;
+use App\Repositories\Post\PostRepositoryInterface;
 use App\Repositories\Pages\PagesRepositoryInterface;
 use App\Repositories\Users\UsersRepositoryInterface;
 use App\Repositories\Authentication\AuthenticationRepository;
@@ -55,6 +58,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->singleton(PersonFollowersRepositoryInterface::class, function($App) 
         {
             return new PersonFollowersRepository(PersonFollowers::class);
+        });
+
+        $this->app->singleton(PostRepositoryInterface::class, function($App) 
+        {
+            return new PostRepository(Post::class);
         });
 
       
