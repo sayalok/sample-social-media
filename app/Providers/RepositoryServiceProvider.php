@@ -8,15 +8,18 @@ use App\Models\Post;
 use App\Models\User;
 
 use App\Models\Pages;
+use App\Models\PagePost;
 use App\Models\PagesFollowers;
 use App\Models\PersonFollowers;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Post\PostRepository;
 use App\Repositories\Pages\PagesRepository;
 use App\Repositories\Users\UsersRepository;
+use App\Repositories\PagePost\PagePostRepository;
 use App\Repositories\Post\PostRepositoryInterface;
 use App\Repositories\Pages\PagesRepositoryInterface;
 use App\Repositories\Users\UsersRepositoryInterface;
+use App\Repositories\PagePost\PagePostRepositoryInterface;
 use App\Repositories\Authentication\AuthenticationRepository;
 use App\Repositories\PagesFollowers\PagesFollowersRepository;
 use App\Repositories\PersonFollowers\PersonFollowersRepository;
@@ -63,6 +66,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->singleton(PostRepositoryInterface::class, function($App) 
         {
             return new PostRepository(Post::class);
+        });
+
+        $this->app->singleton(PagePostRepositoryInterface::class, function($App) 
+        {
+            return new PagePostRepository(PagePost::class);
         });
 
       
