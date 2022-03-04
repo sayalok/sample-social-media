@@ -22,6 +22,8 @@ Route::group(['middleware' => 'api',], function ($router) {
 Route::group(['middleware' => 'auth:api',], function ($router) {
     Route::post('/logout', [AuthenticationController::class, 'logout']);
     Route::get('/user-profile', [UserController::class, 'userProfile']);
+    
+    Route::get('/news-feed', [PostController::class, 'user_feeds']);
 
     Route::prefix('pages')->group(function()
     {

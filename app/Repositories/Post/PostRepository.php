@@ -21,4 +21,17 @@ class PostRepository extends BaseRepository implements PostRepositoryInterface
             return false;
         }
     }
+
+    
+    public function getNewsFeed()
+    {
+        try {
+            $condition = [
+                'user_id' => auth()->user()->id
+            ];
+            return $this->getWhereWithPagination($condition,2);
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
 }

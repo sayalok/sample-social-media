@@ -35,7 +35,18 @@ class PostController extends Controller
         }
     }
 
-  
+    public function user_feeds()
+    {
+
+        $posts = $this->postRepository->getNewsFeed();
+        try {
+            return response()->json($posts);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Failed',
+            ], 400);
+        }
+    }
 
   
 }
